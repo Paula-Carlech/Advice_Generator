@@ -52,7 +52,7 @@ picture{
     transform: translate(-50%, -50%);
 
     margin: 0;
-    margin-top: 100px;
+    margin-top: 120px;
     padding: 0;
 }
 
@@ -64,19 +64,21 @@ p#num{
 }
 
 p#text{
-    padding: 15px;
+    padding: 20px;
+    margin-top: 10px;
     text-align: center;
     font-size: 30pt;
     color: var(--Light_Cyan);
 }
 
-.button{
+button#button{
     position: absolute;
     top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
 
     border-radius: 50%;
+    border: none;
     height: 70px;
     width: 70px;
     background-color: var(--Neon_Green);
@@ -85,7 +87,7 @@ p#text{
     background-position: center;
 }
 
-.button.button:hover{
+#button#button:hover{
     box-shadow: 0px 0px 20px 5px var(--Neon_Green);
     transition: 0.2s;
     cursor: pointer;

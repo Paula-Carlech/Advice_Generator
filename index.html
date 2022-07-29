@@ -14,28 +14,45 @@
             <p id="num">A D V I C E # 0 0 0</p>
             <p id="text">Advice Generator</p>
             <picture>
-                <source media="(min-width: 900px)" srcset="images/pattern-divider-desktop.svg">
+                <source media="(min-width: 1000px)" srcset="images/pattern-divider-desktop.svg">
                 <img src="images/pattern-divider-mobile.svg" alt="Divider">
             </picture>
         </div>
-        <div class="button" onclick="fetchAdvice()"></div>
+        <button id="button"></button>
         <section>
             Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
             Coded by <a href="https://github.com/Paula-Carlech">Paula Carlech</a>.
         </section>
     </main>
     <script>
-        function fetchAdvice(){
-            const fetchAdvice = async() => {
-            const res = await fetch("https://api.adviceslip.com/advice")
-            const data = await res.jason()
+        const API_LINK = "https://api.adviceslip.com/advice";
+        const adviceNum = document.getElementById('num')
+        const adviceText = document.getElementById('text')
+        const fetchBTN = document.getElementById('button')
 
-            console.log(data)
+        const fetchNewAdvice = async () => {
+            const response = await fetch(API_LINK);
+            const advice = await response.json()
+            return advice
+        };
 
-            document.getElementById("num").innerHTML = `ADVICE #${data.slip.id}`
-            document.getElementById("text").innerHTML = `"${data.slip.advice}"`
-            }
-        }
+        const renderAdvice = (adviceObj) => {
+            const {id, advice} = adviceObj;
+
+            adviceNum.textContent = `A D V I C E #${id}`
+            adviceText.textContent = `"${advice}"`;
+        };
+
+        const generateNewAdvice = async () => {
+            const data = await fetchNewAdvice()
+            const advice = data.slip;
+            
+            renderAdvice(advice)
+        };
+
+        window.addEventListener('DOMContentLoaded', () =>{
+            fetchBTN.addEventListener('click', generateNewAdvice)
+        })
     </script>
 </body>
 </html>
